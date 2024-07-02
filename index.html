@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Curso introdutório de Vue 3 </title>
+
+    <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+    <div id="app"> <!-- É aqui onde o Vue vai retornar//v-if bloqueia automaticamente//v-show dá a opção de block / none -->
+        <div :style="styles"> <!-- key-name: value -->
+            <label for="themeBlack">
+                <input type="checkbox" :checked="themeBlack" @click="toogleTheme" name="themeBlack" id="themeBlack"> Tema escuro
+            </label>
+            <h1> {{ title }} </h1> <!-- {{ }} é a assinatura do Vue, onde ele retorna os valores especificados no arquivo js-->
+            <p> {{ fullName }} </p>
+            
+            <hr> 
+            <h3> Carrinho ({{ cart.length }}) </h3>
+            
+
+            <ul>
+                <li v-for="(product, index) in products" :key="product.title"> <!-- Estrutura For = elemento, índice; Semelhante ao Python -->
+                    <p>{{ product.title }}</p> <!-- v-bind: e : possuem a mesma assinatura -->
+                    <img :src="product.image" :alt="product.title" style="max-width: 108px;"> <br>  
+                    {{ product.description }}
+                    <strong v-if="product.stars > 4"> {{ product.stars }} </strong>    
+                   <!-- <a href="#" @click.prevent= "removeCart(product)" v-if="inCart(product)"> 
+                        REMOVE CART 
+                    </a> --> <!-- @ e v-on possuem a mesma assinatura--> <!-- click.prevent para evitar que mude de página-->
+                    <button @click.prevent="addCart(product)" 
+                        :disabled="inCart(product)" 
+                        :class="[ 'color', { 'button-disabled' : inCart(product) } ]">
+                        ADD CART 
+                    </button>
+                    
+
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"> </script>
+    <script src="./app.js"> </script>
+</body>
+</html>
