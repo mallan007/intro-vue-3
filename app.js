@@ -58,10 +58,12 @@ const myApp= {
                 this.styles.backgroundColor = '#fff'
                 this.styles.color = '#000'
             }
-        },
-    }
+        }
+    },
 
-    }
-    const app = Vue.createApp(myApp)
+}
+
+const app = Vue.createApp(myApp)
+
     
-    app.mount('#app') //Aonde vai montar o Vue.js
+   
